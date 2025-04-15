@@ -29,4 +29,6 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-module.exports = (req, res) => app(req, res);
+module.exports = app;
+const serverless = require("serverless-http");
+module.exports = serverless(app);
