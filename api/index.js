@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
 
 const usuarios = [
   { nome: "Breno Lima", cidade: "Juazeiro do Norte" },
@@ -30,6 +29,4 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+module.exports = (req, res) => app(req, res);
