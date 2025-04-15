@@ -30,6 +30,4 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+module.exports = app;
