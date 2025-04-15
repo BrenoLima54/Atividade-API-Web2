@@ -1,4 +1,4 @@
-const express = require("express");
+import express from "express";
 const app = express();
 const PORT = 3000;
 
@@ -30,4 +30,4 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-module.exports = app;
+export default app;
