@@ -1,8 +1,8 @@
 const express = require("express");
-const serverless = require("serverless-http");
-
-const port = 3000;
 const app = express();
+const cors = require('cors')
+const port = 3000;
+
 
 const usuarios = [
   { nome: "Breno Lima", cidade: "Juazeiro do Norte" },
@@ -16,6 +16,13 @@ const usuarios = [
   { nome: "Harley Macedo", cidade: "Juazeiro do Norte" },
   { nome: "Robson Fechine", cidade: "Crato" },
 ];
+
+app.use(cors(
+    {
+        "origin": "*",
+        "methods": "GET,PUT,POST,DELETE",
+    }
+))
 
 app.get("/usuario/todos", (req, res) => {
   res.json(usuarios);
