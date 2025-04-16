@@ -7,19 +7,10 @@
     "serverless-http": "^3.2.0"
   },
   "scripts": {
+    "start" : "node api/index.js",
     "dev": "node local.js"
   },
- 
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BrenoLima54/Atividade-API-Web2.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BrenoLima54/Atividade-API-Web2/issues"
-  },
-  "homepage": "https://github.com/BrenoLima54/Atividade-API-Web2#readme",
   "description": ""
 }

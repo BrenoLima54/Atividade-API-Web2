@@ -16,17 +16,17 @@ const usuarios = [
   { nome: "Robson Fechine", cidade: "Crato" },
 ];
 
-app.get("/api/usuario/todos", (req, res) => {
+app.get("/usuario/todos", (req, res) => {
   res.json(usuarios);
 });
 
-app.get("/api/usuario/cidade/:cidade", (req, res) => {
+app.get("/usuario/cidade/:cidade", (req, res) => {
   const cidade = req.params.cidade.toLowerCase();
   const resultado = usuarios.filter((u) => u.cidade.toLowerCase() === cidade);
   res.json(resultado);
 });
 
-app.get("/api/usuario/sorteado", (req, res) => {
+app.get("/usuario/sorteado", (req, res) => {
   const indexAleatorio = Math.floor(Math.random() * usuarios.length);
   res.json(usuarios[indexAleatorio]);
 });
