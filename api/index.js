@@ -1,8 +1,7 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const cors = require('cors')
+app.set('json spaces', 2);
 const port = 3000;
-
 
 const usuarios = [
   { nome: "Breno Lima", cidade: "Juazeiro do Norte" },
@@ -16,13 +15,6 @@ const usuarios = [
   { nome: "Harley Macedo", cidade: "Juazeiro do Norte" },
   { nome: "Robson Fechine", cidade: "Crato" },
 ];
-
-app.use(cors(
-    {
-        "origin": "*",
-        "methods": "GET,PUT,POST,DELETE",
-    }
-))
 
 app.get("/usuario/todos", (req, res) => {
   res.json(usuarios);
@@ -39,5 +31,4 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-app.listen(process.env.PORT || 3000)
-
+module.exports = app;
