@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
+
 const app = express();
-app.set('json spaces', 2);
 const port = 3000;
 
 const usuarios = [
@@ -16,19 +16,45 @@ const usuarios = [
   { nome: "Robson Fechine", cidade: "Crato" },
 ];
 
-app.get("/usuario/todos", (req, res) => {
-  res.json(usuarios);
+app.use(express.json());
+
+app.use((req, res, next) => {
+    console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+    next();
 });
 
-app.get("/usuario/cidade/:cidade", (req, res) => {
-  const cidade = req.params.cidade.toLowerCase();
-  const resultado = usuarios.filter((u) => u.cidade.toLowerCase() === cidade);
-  res.json(resultado);
+app.get('/usuario/todos', (req, res) => {
+    try {
+        res.json(usuarios);
+    } catch (error) {
+        console.error('Erro ao buscar usuários:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
 });
 
-app.get("/usuario/sorteado", (req, res) => {
-  const indexAleatorio = Math.floor(Math.random() * usuarios.length);
-  res.json(usuarios[indexAleatorio]);
+app.get('/usuario/cidade/:cidade', (req, res) => {
+    const cidadeParam = req.params.cidade.toLowerCase();
+    console
+    const filtrados = usuarios.filter(usuarios => usuarios.cidade.toLowerCase() === cidadeParam);
+    res.json(filtrados);
 });
 
-module.exports = app;
+app.get('/usuario/sorteado', (req, res) => {
+    try {
+        const indiceSorteado = Math.floor(Math.random() * usuarios.length);
+        res.json(usuarios[indiceSorteado]);
+    } catch (error) {
+        console.error('Erro ao sortear usuário:', error);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+app.use((req, res) => {
+    res.status(404).json({ error: 'Rota não encontrada' });
+});
+
+app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
+});
+
+export default app;
