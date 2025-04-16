@@ -1,6 +1,7 @@
 const express = require("express");
 const serverless = require("serverless-http");
 
+const port = 3000;
 const app = express();
 
 const usuarios = [
@@ -31,5 +32,5 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-module.exports = app;
-module.exports.handler = serverless(app);
+app.listen(process.env.PORT || 3000)
+
