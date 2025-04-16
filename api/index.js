@@ -1,5 +1,5 @@
 const express = require("express");
-const serverless = require("serverless-http");
+const serverless = require("serverless-http"); // IMPORTANTE
 
 const app = express();
 
@@ -31,4 +31,5 @@ app.get("/usuario/sorteado", (req, res) => {
   res.json(usuarios[indexAleatorio]);
 });
 
-module.exports = serverless(app);
+module.exports = app;
+module.exports.handler = serverless(app);
